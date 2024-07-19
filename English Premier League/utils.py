@@ -1,39 +1,4 @@
-from sklearn.metrics import mean_absolute_error, accuracy_score
 from sklearn.tree import DecisionTreeRegressor
-import matplotlib.pyplot as plt
-
-
-def score_model(X_train, X_valid, y_train, y_valid, preprocesor, model=DecisionTreeRegressor, flush=True, **kwargs):
-    random_state = kwargs.get('random_state', 42)
-    model_tree = model(random_state=random_state, **kwargs)
-    
-    tree_pipeline = Pipeline(steps=[
-        ('preprocesor', preprocesor),
-        ('model', model_tree),
-    ])
-    
-    tree_pipeline.fit(X_train, y_train)
-    preds = tree_pipeline.predict(X_valid)
-    
-    mae = mean_absolute_error([round(i) for i in preds], y_valid)
-    acc = accuracy_score([round(i) for i in preds], y_valid)
-    if flush:
-        print(f'\rMAE: {mae} | Acc Score: {acc}| {kwargs=}', end='', flush=True)
-    return mae, preds
-
-
-def display_plot(x_values, y_values, xlabel: str = '', ylabel: str = '', title: str = '', label: str = 'x'):
-
-    plt.figure(figsize=(6, 3))
-    plt.plot(x_values, y_values, linestyle='-', color='b', label=label)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.title(title)
-    plt.grid(True)
-    plt.legend()
-    plt.tight_layout()
-    
-    plt.show()
 
 
 def add_wldha(X):
@@ -77,3 +42,30 @@ def add_wldha(X):
         X.at[index, 'WSA'] = wsa
         X.at[index, 'DSA'] = dsa
         X.at[index, 'LSA'] = lsa
+
+
+def foo():
+    import numpy as np
+
+    # Assume prices are linearly related to the size of the house
+    house_size = np.array([[1200], [1500], [1000]])  # Square feet
+    prices = np.array([240000, 300000, 200000])  # Price in dollars
+    theta = np.array([100000, 100])  # Initial guess for parameters [b, a]
+
+    # Perform one iteration of gradient descent to update the parameters
+    learning_rate = 0.01
+    m = len(prices)
+    X_b = np.c_[np.ones((3, 1)), house_size]  # Adding bias term
+
+
+    # TODO: Update the theta parameters using the gradient descent rule
+    for _ in range(100):
+        gradients = 2 / len(prices) + X_b.T.dot(X_b.dot(theta) - prices)
+        print(theta - (learning_rate * gradients))
+        theta = theta - (learning_rate * gradients)
+
+    print(f"Updated parameters: {theta}")
+
+
+if __name__ == "__main__":
+    foo()
