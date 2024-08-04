@@ -2,7 +2,7 @@
 name = "ds-jupyter-notebook"
 version = "0.1.0"
 description = ""
-authors = ["dianamatkava <dianamatkava@gmail.com>"]
+authors = ["dianamatkava <diana.matkava.pr@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
