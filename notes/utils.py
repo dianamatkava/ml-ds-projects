@@ -29,3 +29,7 @@ def split_test_dataset(data, types='numerical'):
 
     return train_test_split(X_train, y_train, random_state=1)
 
+
+A = np.array([[1, 3, 0],
+              [2, 4, 0],
+              [2, 0, 1]])
