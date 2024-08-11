@@ -5,8 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 
 
-from functools import reduce
-
 def score_model(x_train, x_test, y_train, y_val, model=DecisionTreeRegressor):
     model = model(random_state=0)
     model.fit(x_train, y_train)
@@ -28,8 +26,3 @@ def split_test_dataset(data, types='numerical'):
     y_train = df_copy.Price
 
     return train_test_split(X_train, y_train, random_state=1)
-
-
-A = np.array([[1, 3, 0],
-              [2, 4, 0],
-              [2, 0, 1]])
