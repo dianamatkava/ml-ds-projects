@@ -1,3 +1,3 @@
 ## Machine Learning projects and notes
 
-![Minesweeper Game](./public/ml-notes.png)
+![Minesweeper Game](assets/ml-notes.png)
